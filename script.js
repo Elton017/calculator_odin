@@ -30,7 +30,7 @@ numberButtons.forEach((button) => {
 });
 
 decimal.addEventListener("click", () => {
-    if (!label.contains(".")) {
-        label.textContent += button.textContent;
+    if (!label.textContent.includes(".")) {
+        label.textContent += decimal.textContent;
     }
 });
