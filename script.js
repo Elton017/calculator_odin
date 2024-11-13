@@ -87,3 +87,10 @@ clear.addEventListener("click", () => {
     secondNumber = 0;
     label.textContent = ""
 })
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Backspace"){
+        let text = label.textContent;
+        label.textContent = text.slice(0, -1);
+    }
+})
