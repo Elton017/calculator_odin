@@ -89,7 +89,25 @@ clear.addEventListener("click", () => {
 })
 
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Backspace"){
+    const key = e.key;
+
+    if (key >= 0 && key <= 9) {
+        label.textContent += key;
+    }
+
+    if (key == "+" || key == "-" || key == "/" || key == "*") {
+        operator = key;
+        firstNumber = parseFloat(label.textContent);
+        label.textContent = "";
+    }
+
+    if (key == "=" || key =="Enter") {
+        secondNumber = parseFloat(label.textContent);
+        const result = operate(firstNumber, secondNumber, operator);
+        label.textContent = result; 
+    }
+
+    if (key === "Backspace"){
         let text = label.textContent;
         label.textContent = text.slice(0, -1);
     }
