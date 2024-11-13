@@ -48,20 +48,23 @@ const label = document.querySelector("#display");
 const numberButtons = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const decimal = document.querySelector("#decimal");
-const equal = document.querySelector("#equal")
+const equal = document.querySelector("#equal");
+const clear = document.querySelector("#clear");
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        label.textContent += button.textContent;
+        if (label.textContent === "Cannot divide by 0" || label.textContent === "Invalid operator") {
+            label.textContent = button.textContent;
+        } 
+        else {
+          label.textContent += button.textContent;
+        }
     })
 });
 
 decimal.addEventListener("click", () => {
-    if (label.textContent === "Cannot divide by 0" || label.textContent === "Invalid operator") {
-        label.textContent = button.textContent;
-    } 
-    else {
-      label.textContent += button.textContent;
+    if (!label.textContent.includes(".")) {
+        label.textContent += decimal.textContent;
     }
 });
 
@@ -77,4 +80,10 @@ equal.addEventListener("click", () => {
     secondNumber = parseFloat(label.textContent)
     const result = operate(firstNumber, secondNumber, operator);
     label.textContent = result;
+})
+
+clear.addEventListener("click", () => {
+    firstNumber = 0;
+    secondNumber = 0;
+    label.textContent = ""
 })
