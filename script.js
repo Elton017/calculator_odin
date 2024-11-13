@@ -48,6 +48,7 @@ const label = document.querySelector("#display");
 const numberButtons = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const decimal = document.querySelector("#decimal");
+const equal = document.querySelector("#equal")
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -56,8 +57,24 @@ numberButtons.forEach((button) => {
 });
 
 decimal.addEventListener("click", () => {
-    if (!label.textContent.includes(".")) {
-        label.textContent += decimal.textContent;
+    if (label.textContent === "Cannot divide by 0" || label.textContent === "Invalid operator") {
+        label.textContent = button.textContent;
+    } 
+    else {
+      label.textContent += button.textContent;
     }
 });
 
+operators.forEach(op => {
+    op.addEventListener("click", () => {
+        operator = op.textContent;
+        firstNumber = parseFloat(label.textContent);
+        label.textContent = "";
+    })
+})
+
+equal.addEventListener("click", () => {
+    secondNumber = parseFloat(label.textContent)
+    const result = operate(firstNumber, secondNumber, operator);
+    label.textContent = result;
+})

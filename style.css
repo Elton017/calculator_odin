@@ -41,7 +41,7 @@ body {
     flex: 1 1 16%;
 }
 
-.number, .operator {
+.number, .operator, .equal, .decimal {
     flex: 1 1 16%;
     border-radius: 10%;
     border-width: 5px;
